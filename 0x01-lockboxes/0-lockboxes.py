@@ -1,5 +1,5 @@
 #!/usr/bin/pyhon3
-"""Lockbox question"""
+"""Lockboxes question"""
 
 
 def canUnlockAll(boxes):
