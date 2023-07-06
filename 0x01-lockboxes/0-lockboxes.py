@@ -4,10 +4,11 @@
 
 def canUnlockAll(boxes):
     """Lockbox question"""
-    n = len(boxes)  # Number of boxes
-    visited = [False] * n  # Track visited boxes
-    visited[0] = True  # Mark the first box as visited
-    stack = [0]  # Stack to store boxes to visit
+
+    n = len(boxes)
+    visited = [False] * n
+    visited[0] = True
+    stack = [0]
 
     while stack:
         box = stack.pop()
