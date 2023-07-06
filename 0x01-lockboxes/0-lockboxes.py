@@ -1,6 +1,9 @@
-#!/usr/bin/env pyhon3
+#!/usr/bin/pyhon3
+"""Lockbox question"""
+
 
 def canUnlockAll(boxes):
+    """Lockbox question"""
     n = len(boxes)  # Number of boxes
     visited = [False] * n  # Track visited boxes
     visited[0] = True  # Mark the first box as visited
