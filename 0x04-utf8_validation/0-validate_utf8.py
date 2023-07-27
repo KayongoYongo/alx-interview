@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 This function carries out a UTF-8 validation of numbers.
 If they are UTF-8 comploiant, the function returns True.Else,
