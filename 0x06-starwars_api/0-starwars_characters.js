@@ -2,14 +2,14 @@
 
 const request = require('request');
 
-function getMovieCharacters(movieId) {
+function getMovieCharacters (movieId) {
   const url = `https://swapi.dev/api/films/${movieId}/`;
 
   return new Promise((resolve, reject) => {
     request(url, (error, response, body) => {
       if (error) {
-        console.error("Error fetching movie data:", error.message);
-        reject([]);
+        console.error('Error fetching movie data:', error.message);
+        reject(new Error('Failed to fetch movie data'));
       } else if (response.statusCode === 200) {
         const filmData = JSON.parse(body);
         const characterUrls = filmData.characters;
@@ -17,7 +17,7 @@ function getMovieCharacters(movieId) {
           return new Promise((resolveChar, rejectChar) => {
             request(charUrl, (charError, charResponse, charBody) => {
               if (charError) {
-                rejectChar(charError);
+                rejectChar(new Error('Failed to fetch character data'));
               } else {
                 const charData = JSON.parse(charBody);
                 resolveChar(charData.name);
@@ -31,19 +31,19 @@ function getMovieCharacters(movieId) {
             resolve(characterNames);
           })
           .catch(err => {
-            console.error("Error fetching character data:", err.message);
-            resolve([]);
+            console.error('Error fetching character data:', err.message);
+            reject(new Error('Failed to fetch character data'));
           });
       } else {
-        console.error("Error fetching movie data. Status code:", response.statusCode);
-        reject([]);
+        console.error('Error fetching movie data. Status code:', response.statusCode);
+        reject(new Error('Failed to fetch movie data'));
       }
     });
   });
 }
 
 if (process.argv.length < 3) {
-  console.log("Usage: node script_name.js movie_id");
+  console.log('Usage: node script_name.js movie_id');
   process.exit(1);
 }
 
