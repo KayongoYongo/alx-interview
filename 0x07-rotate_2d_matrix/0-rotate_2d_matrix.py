@@ -1,4 +1,4 @@
-#!/usr/bin/pyhton3
+#!/usr/bin/python3
 """A function that rotates a 2D matrix in a 90
 degree clockwise manner
 """
