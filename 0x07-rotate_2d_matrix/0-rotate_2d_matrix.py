@@ -1,4 +1,4 @@
-#!/usr/bin/env pyhton3
+#!/usr/bin/pyhton3
 """A function that rotates a 2D matrix in a 90
 degree clockwise manner
 """
