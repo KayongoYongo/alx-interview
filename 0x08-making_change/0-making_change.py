@@ -2,6 +2,7 @@
 """This function finds the change given the coins
 and the total"""
 
+
 def makeChange(coins, total):
     """This function finds the change.
 
