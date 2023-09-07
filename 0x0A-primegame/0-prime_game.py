@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Sieve of erastothenes"""
 
+
 def isWinner(x, nums):
     def sieve_of_eratosthenes(n):
         # Create a list of booleans to mark numbers as prime or not
