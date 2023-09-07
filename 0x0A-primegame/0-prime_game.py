@@ -1,53 +1,44 @@
 #!/usr/bin/python3
-"""Sieve of erastothenes"""
+"""
+Define isWineer function, a solution to the Prime Game problem
+"""
+
+
+def primes(n):
+    """Return list of prime numbers between 1 and n inclusive
+       Args:
+        n (int): upper boundary of range. lower boundary is always 1
+    """
+    prime = []
+    sieve = [True] * (n + 1)
+    for p in range(2, n + 1):
+        if (sieve[p]):
+            prime.append(p)
+            for i in range(p, n + 1, p):
+                sieve[i] = False
+    return prime
 
 
 def isWinner(x, nums):
     """
-    This function finds the winner.
-
-    Sieve of erastothenes: finds the prime numbers from 1 to 100
-    get_winner: finds the winner
-
+    Determines winner of Prime Game
+    Args:
+        x (int): no. of rounds of game
+        nums (int): upper limit of range for each round
     Return:
-        Winnner
+        Name of winner (Maria or Ben) or None if winner cannot be found
     """
-    def sieve_of_eratosthenes(n):
-        # Create a list of booleans to mark numbers as prime or not
-        sieve = [True] * (n + 1)
-        sieve[0] = sieve[1] = False  # 0 and 1 are not prime numbers
-
-        # Mark multiples of each prime number as not prime
-        for current in range(2, int(n ** 0.5) + 1):
-            if sieve[current]:
-                for multiple in range(current * current, n + 1, current):
-                    sieve[multiple] = False
-
-        # Return a list of prime numbers
-        return [num for num, is_prime in enumerate(sieve) if is_prime]
-
-    def get_winner(n):
-        primes = sieve_of_eratosthenes(n)
-        total_primes = len(primes)
-        if total_primes % 2 == 0:
-            return "Ben"
-        else:
-            return "Maria"
-
-    # Calculate the winner for each round and keep track of the count
-    maria_wins = 0
-    ben_wins = 0
-    for n in nums:
-        winner = get_winner(n)
-        if winner == "Maria":
-            maria_wins += 1
-        elif winner == "Ben":
-            ben_wins += 1
-
-    # Determine the overall winner
-    if maria_wins > ben_wins:
-        return "Maria"
-    elif ben_wins > maria_wins:
-        return "Ben"
-    else:
+    if x is None or nums is None or x == 0 or nums == []:
         return None
+    Maria = Ben = 0
+    for i in range(x):
+        prime = primes(nums[i])
+        if len(prime) % 2 == 0:
+            Ben += 1
+        else:
+            Maria += 1
+    if Maria > Ben:
+        return 'Maria'
+    elif Ben > Maria:
+        return 'Ben'
+    return None
