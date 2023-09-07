@@ -3,6 +3,15 @@
 
 
 def isWinner(x, nums):
+    """
+    This function finds the winner.
+
+    Sieve of erastothenes: finds the prime numbers from 1 to 100
+    get_winner: finds the winner
+
+    Return:
+        Winnner
+    """
     def sieve_of_eratosthenes(n):
         # Create a list of booleans to mark numbers as prime or not
         sieve = [True] * (n + 1)
